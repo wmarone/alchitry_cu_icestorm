@@ -1,5 +1,5 @@
 
-all: $(PROJ).rpt $(PROJ).bin
+all: $(PROJ).rpt $(PROJ).bin $(PROJ).v
 
 %.blif: %.v $(ADD_SRC) $(ADD_DEPS)
 	yosys -ql $*.log $(if $(USE_ARACHNEPNR),-DUSE_ARACHNEPNR) -p 'synth_ice40 -top top -blif $@' $< $(ADD_SRC)

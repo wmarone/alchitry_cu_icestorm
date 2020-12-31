@@ -12,3 +12,5 @@ set_io led[7] N14
 
 set_io usb_rx P14
 set_io usb_tx M9
+
+set_io aio_s2 H11
