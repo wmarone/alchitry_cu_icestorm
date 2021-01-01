@@ -1,4 +1,4 @@
-`include "cu_db.v"
+`include "db.v"
 
 module top(
     input clk,              // 100MHz clock
@@ -11,7 +11,7 @@ module top(
  
     reg [7:0] st = 1;
     
-    db b1(clk, rst_n, aio_s2, out);
+    db b1(clk, ~rst_n, aio_s2, out);
 
     always @ ( out )
         begin

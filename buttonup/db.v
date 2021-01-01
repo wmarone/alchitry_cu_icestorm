@@ -8,7 +8,8 @@ module db (
     reg [maxbit - 1 : 0] q_reg;
     reg [maxbit - 1 : 0] q_next;
 
-    reg f1, f2;
+    reg f1;
+    reg f2;
 
     wire q_add;
     wire q_reset;

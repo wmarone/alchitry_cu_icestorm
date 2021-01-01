@@ -1,27 +1,43 @@
 `default_nettype none
-`timescale 1ns / 100ps
+`timescale 1ns / 1ns
 
-`include "cu_db.v"
+//`include "db.v"
 
 module db_tb;
 
-    wire clk, rst_n, aio_s2, out;
+    initial
+        begin
+            $dumpfile("db_tb.vcd");
+            $dumpvars(0, clk);
+            $dumpvars(1, aio_s2);
+            $dumpvars(2, db0);
+        end
 
-    localparam wait_period = 20;
+    reg clk = 0;
+    reg aio_s2 = 0;
+    reg rst_n = 1;
+    reg out;
 
-    db b0(.clk(clk), .rst_n(rst_n), .button_in(aio_s2), .out(out));
+    always #10 clk = ~clk;
+
+    db db0(clk, rst_n, aio_s2, out);
 
     initial
         begin
-            clk = 0;
-            rst_n = 0;
-            aio_s2 = 0;
-            out = 0;
-            #waitperiod;
-
-            clk = 1;
-            #waitperiod;
+            # 1000000 aio_s2 = 1;
+            # 1000000 aio_s2 = 0;
+            # 1000000 aio_s2 = 1;
+            # 1000000 aio_s2 = 0;
+            # 1000000 aio_s2 = 1;
+            # 1000000 aio_s2 = 0;
+            # 1000000 aio_s2 = 1;
+            # 1000000 aio_s2 = 0;
+            # 1000000 aio_s2 = 1;
+            # 1000000 aio_s2 = 0;
+            # 10000000 aio_s2 = 1;
+            # 10000000 aio_s2 = 0;
+            # 20000000 aio_s2 = 1;
+            # 20000000 aio_s2 = 0;
+            # 40000000 $finish;
         end
-
-
 endmodule
